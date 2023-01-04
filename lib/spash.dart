@@ -1,9 +1,11 @@
-import 'package:blog_club/home.dart';
-import 'package:blog_club/main.dart';
+import 'package:blog_club/gen/assets.gen.dart';
+import 'package:blog_club/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -11,10 +13,10 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       Navigator.of(context).pushReplacement(
         CupertinoPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => const OnBoardingScreen(),
         ),
       );
     });
@@ -28,13 +30,13 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              MyApp.backgroundPath('splash.png'),
+              Assets.img.background.splash.path,
               fit: BoxFit.cover,
             ),
           ),
           Center(
             child: Image.asset(
-              MyApp.iconsPath('logo.png'),
+              Assets.img.icons.logo.path,
               width: 100,
             ),
           ),

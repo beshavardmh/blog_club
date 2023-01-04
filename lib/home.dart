@@ -1,3 +1,4 @@
+import 'package:blog_club/gen/assets.gen.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,10 @@ class HomeScreen extends StatelessWidget {
     ThemeData themeData = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: themeData.colorScheme.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     Image.asset(
-                      MyApp.iconsPath('notification.png'),
+                      Assets.img.icons.notification.path,
                       width: 32,
                     ),
                   ],
@@ -123,7 +125,7 @@ class _CategoryItem extends StatelessWidget {
                     color: Colors.grey.shade600,
                     blurRadius: 25,
                     spreadRadius: 1,
-                    offset: Offset(0, 2),
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
@@ -131,14 +133,14 @@ class _CategoryItem extends StatelessWidget {
           ),
           Positioned.fill(
             child: Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 50),
+              margin: const EdgeInsets.fromLTRB(0, 0, 0, 50),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
                 color: MyApp.primaryColor,
               ),
               foregroundDecoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
                     Color(0xff0D253C),
                     Colors.transparent,
@@ -150,7 +152,7 @@ class _CategoryItem extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(32),
                 child: Image.asset(
-                  MyApp.postsPath('large/' + category.imageFileName),
+                  MyApp.postsPath('large/${category.imageFileName}'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -189,7 +191,7 @@ class _StoryList extends StatelessWidget {
         child: ListView.builder(
           itemCount: MyApp.stories.length,
           scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemBuilder: (context, index) {
             final story = MyApp.stories[index];
 
@@ -212,7 +214,7 @@ class _Story extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+      margin: const EdgeInsets.fromLTRB(0, 0, 8, 0),
       child: Column(
         children: [
           Stack(
@@ -228,7 +230,7 @@ class _Story extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(story.name),
         ],
       ),
@@ -239,9 +241,9 @@ class _Story extends StatelessWidget {
     return Container(
       width: 70,
       height: 70,
-      margin: EdgeInsets.all(1),
+      margin: const EdgeInsets.all(1),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topCenter,
           colors: [
             Color(0xff376AED),
@@ -252,8 +254,8 @@ class _Story extends StatelessWidget {
         borderRadius: MyApp.primaryRadius,
       ),
       child: Container(
-        margin: EdgeInsets.all(2.5),
-        padding: EdgeInsets.all(5),
+        margin: const EdgeInsets.all(2.5),
+        padding: const EdgeInsets.all(5),
         // color: Color(0xffffffff),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
@@ -273,17 +275,16 @@ class _Story extends StatelessWidget {
     return Container(
       width: 70,
       height: 70,
-      margin: EdgeInsets.all(1),
+      margin: const EdgeInsets.all(1),
       child: DottedBorder(
         borderType: BorderType.RRect,
         strokeWidth: 2,
         color: MyApp.primaryColor,
-        dashPattern: [6, 3],
-        radius: Radius.circular(24),
+        dashPattern: const [6, 3],
+        radius: const Radius.circular(24),
         child: Container(
-          margin: EdgeInsets.all(2.5),
-          padding: EdgeInsets.all(2),
-          // color: Color(0xffffffff),
+          margin: const EdgeInsets.all(2.5),
+          padding: const EdgeInsets.all(2),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: Colors.white,
@@ -322,7 +323,7 @@ class _PostList extends StatelessWidget {
                   style: themeData.textTheme.headline2,
                 ),
                 TextButton(
-                  child: Text(
+                  child: const Text(
                     'More',
                     style: TextStyle(color: MyApp.primaryColor),
                   ),
@@ -330,7 +331,7 @@ class _PostList extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             getPosts(),
           ],
         ),
@@ -348,14 +349,14 @@ class _PostList extends StatelessWidget {
 class _Post extends StatelessWidget {
   final PostData post;
 
-  const _Post({super.key, required this.post});
+  const _Post({required this.post});
 
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
 
     return Container(
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         bottom: 16,
       ),
       decoration: BoxDecoration(
@@ -366,7 +367,7 @@ class _Post extends StatelessWidget {
             blurRadius: 15,
             offset: const Offset(0, 5),
             spreadRadius: -10,
-            color: Color(0xff5282FF).withOpacity(.6),
+            color: const Color(0xff5282FF).withOpacity(.6),
           ),
         ],
       ),
@@ -376,7 +377,7 @@ class _Post extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(22),
               child: Image.asset(
-                MyApp.postsPath('small/' + post.imageFileName),
+                MyApp.postsPath('small/${post.imageFileName}'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -395,7 +396,7 @@ class _Post extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     post.title,
                     style: themeData.textTheme.subtitle1!.copyWith(
@@ -403,31 +404,31 @@ class _Post extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
+                          const Icon(
                             CupertinoIcons.hand_thumbsup,
                             size: 15,
                             color: MyApp.secondaryTextColor,
                           ),
-                          SizedBox(width: 3),
+                          const SizedBox(width: 3),
                           Text(post.likes),
                         ],
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
+                          const Icon(
                             CupertinoIcons.clock,
                             size: 15,
                             color: MyApp.secondaryTextColor,
                           ),
-                          SizedBox(width: 3),
+                          const SizedBox(width: 3),
                           Text(post.time),
                         ],
                       ),

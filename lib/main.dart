@@ -1,11 +1,7 @@
-import 'package:blog_club/carousel/carousel_slider.dart';
 import 'package:blog_club/data.dart';
 import 'package:blog_club/spash.dart';
-import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +15,10 @@ class MyApp extends StatelessWidget {
   static const primaryColor = Color(0xff376AED);
   static const primaryTextColor = Color(0xff0D253C);
   static const secondaryTextColor = Color(0xff2D4379);
-  static String iconsPath(String file) => 'assets/img/icons/${file}';
-  static String postsPath(String file) => 'assets/img/posts/${file}';
-  static String storiesPath(String file) => 'assets/img/stories/${file}';
-  static String backgroundPath(String file) => 'assets/img/background/${file}';
+  static String iconsPath(String file) => 'assets/img/icons/$file';
+  static String postsPath(String file) => 'assets/img/posts/$file';
+  static String storiesPath(String file) => 'assets/img/stories/$file';
+  static String backgroundPath(String file) => 'assets/img/background/$file';
   static List<Story> stories = AppDatabase.stories;
   static List<Category> categories = AppDatabase.categories;
   static List<PostData> posts = AppDatabase.posts;
@@ -44,10 +40,28 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         brightness: Brightness.light,
+        colorScheme: const ColorScheme.light(
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          onSurface: primaryTextColor,
+          background: Color(0xffFBFCFF),
+          surface: Colors.white,
+          onBackground: primaryTextColor,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(primaryColor),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ),
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             textStyle: MaterialStateProperty.all(
-              TextStyle(
+              const TextStyle(
                 color: primaryColor,
                 fontFamily: defaultFontFamily,
                 fontSize: 15,
@@ -60,6 +74,7 @@ class MyApp extends StatelessWidget {
           bodyText2: TextStyle(
             fontFamily: defaultFontFamily,
             color: secondaryTextColor,
+            height: 1.6,
           ),
           subtitle1: TextStyle(
             fontFamily: defaultFontFamily,
@@ -80,7 +95,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
